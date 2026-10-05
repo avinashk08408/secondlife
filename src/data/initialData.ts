@@ -472,7 +472,7 @@ export const INITIAL_PROJECTS: Project[] = [
     category: 'Green Tech',
     difficulty: 'Intermediate',
     estimatedBuildTimeMinutes: 50,
-    image: `${import.meta.env.BASE_URL}images/solar-battery-usb-emergency.jpg`,
+    image: `${import.meta.env.BASE_URL}images/solar-battery-usb-emergency-v2.jpg`,
     environmentalImpact: {
       divertedGrams: 95,
       preventedCo2Kg: 1.33,
