@@ -407,7 +407,7 @@ export const INITIAL_PROJECTS: Project[] = [
     category: 'Lighting',
     difficulty: 'Beginner',
     estimatedBuildTimeMinutes: 35,
-    image: '/src/assets/images/project_night_light_1791212814309.jpg',
+    image: `${import.meta.env.BASE_URL}images/salvaged-night-light.jpg`,
     environmentalImpact: {
       divertedGrams: 83,
       preventedCo2Kg: 1.16,
