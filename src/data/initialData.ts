@@ -334,7 +334,7 @@ export const INITIAL_PROJECTS: Project[] = [
     category: 'Instruments & Clocks',
     difficulty: 'Intermediate',
     estimatedBuildTimeMinutes: 60,
-    image: '/src/assets/images/project_desk_clock_1791212797342.jpg',
+    image: `${import.meta.env.BASE_URL}images/smart-desk-clock.jpg`,
     environmentalImpact: {
       divertedGrams: 77,
       preventedCo2Kg: 1.08,
