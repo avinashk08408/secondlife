@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X, Plus, Sparkles, Box, Compass, Activity, Layers, Type } from 'lucide-react';
+import { Menu, X, Plus, Sparkles, Box, Compass, Activity, Layers } from 'lucide-react';
 
 interface NavbarProps {
   activeTab: 'home' | 'inventory' | 'projects' | 'sustainability';
@@ -7,8 +7,6 @@ interface NavbarProps {
   inventoryCount: number;
   readyProjectsCount: number;
   onOpenAddComponent: () => void;
-  headingFont: 'lobster' | 'littledays' | 'daunpenh';
-  setHeadingFont: (font: 'lobster' | 'littledays' | 'daunpenh') => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -17,8 +15,6 @@ export const Navbar: React.FC<NavbarProps> = ({
   inventoryCount,
   readyProjectsCount,
   onOpenAddComponent,
-  headingFont,
-  setHeadingFont,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -33,12 +29,6 @@ export const Navbar: React.FC<NavbarProps> = ({
     setActiveTab(tab);
     setMobileMenuOpen(false);
   };
-
-  const fontOptions: { id: 'lobster' | 'littledays' | 'daunpenh'; label: string; previewClass: string }[] = [
-    { id: 'lobster', label: 'Lobster Two', previewClass: 'font-lobster' },
-    { id: 'littledays', label: 'Little Days', previewClass: 'font-littledays' },
-    { id: 'daunpenh', label: 'Daun Penh', previewClass: 'font-daunpenh' },
-  ];
 
   return (
     <header className="sticky top-0 z-40 w-full bg-[#FAF8F2]/95 backdrop-blur-md border-b border-[#E2DDD4] shadow-[0_1px_4px_rgba(31,33,31,0.04)]">
@@ -94,26 +84,6 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Zone 3: Font Switcher & Primary CTA */}
         <div className="flex items-center gap-2.5">
-          {/* Heading Font Style Switcher */}
-          <div className="hidden sm:flex items-center gap-1 p-1 bg-[#F2EDE2] border border-[#E0D9CC] rounded-lg">
-            <Type className="w-3 h-3 text-[#8D5A44] ml-1 mr-0.5" />
-            <span className="text-[10px] font-mono text-[#62635D] uppercase mr-1">Font:</span>
-            {fontOptions.map((opt) => (
-              <button
-                key={opt.id}
-                onClick={() => setHeadingFont(opt.id)}
-                className={`px-2 py-0.5 text-xs rounded transition-all whitespace-nowrap ${
-                  headingFont === opt.id
-                    ? 'bg-[#1F211F] text-[#FAF8F2] font-semibold shadow-xs'
-                    : 'text-[#535550] hover:text-[#1F211F] hover:bg-[#FAF8F2]'
-                }`}
-                title={`Use ${opt.label} for headings`}
-              >
-                <span className={opt.previewClass}>{opt.label}</span>
-              </button>
-            ))}
-          </div>
-
           <button
             onClick={onOpenAddComponent}
             className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold font-display text-[#FAF8F2] bg-[#1F211F] hover:bg-[#8D5A44] rounded-lg shadow-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8D5A44] whitespace-nowrap"
@@ -137,29 +107,6 @@ export const Navbar: React.FC<NavbarProps> = ({
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div className="md:hidden px-4 pt-2 pb-4 bg-[#FAF8F2] border-b border-[#E2DDD4] shadow-lg space-y-2 animate-in fade-in">
-          {/* Mobile Font Selector */}
-          <div className="flex items-center justify-between p-2 bg-[#F2EDE2] rounded-lg border border-[#E0D9CC] mb-2">
-            <span className="text-xs font-medium text-[#62635D] flex items-center gap-1.5">
-              <Type className="w-3.5 h-3.5 text-[#8D5A44]" />
-              <span>Heading Font:</span>
-            </span>
-            <div className="flex items-center gap-1">
-              {fontOptions.map((opt) => (
-                <button
-                  key={opt.id}
-                  onClick={() => setHeadingFont(opt.id)}
-                  className={`px-2 py-1 text-xs rounded transition-colors ${
-                    headingFont === opt.id
-                      ? 'bg-[#1F211F] text-[#FAF8F2] font-semibold'
-                      : 'bg-[#FAF8F2] text-[#535550]'
-                  }`}
-                >
-                  <span className={opt.previewClass}>{opt.label.split(' ')[0]}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-
           {navLinks.map((item) => {
             const Icon = item.icon;
             const isActive = activeTab === item.id;

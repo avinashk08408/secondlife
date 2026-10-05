@@ -34,8 +34,6 @@ export default function App() {
   const [activeTab, setActiveTab] = useState<'home' | 'inventory' | 'projects' | 'sustainability'>('home');
   const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
-  const [headingFont, setHeadingFont] = useState<'lobster' | 'littledays' | 'daunpenh'>('lobster');
-
   // Inventory state with localStorage persistence
   const [inventory, setInventory] = useState<ComponentItem[]>(() => {
     try {
@@ -259,15 +257,8 @@ export default function App() {
 
   const readyProjectsCount = feasibilityResults.filter((f) => f.feasibilityPercent === 100).length;
 
-  const fontClass =
-    headingFont === 'lobster'
-      ? 'font-lobster'
-      : headingFont === 'littledays'
-      ? 'font-littledays'
-      : 'font-daunpenh';
-
   return (
-    <div className={`min-h-screen transition-colors duration-500 flex flex-col bg-[#FAF8F2] text-[#1F211F] selection:bg-[#8D5A44]/20 selection:text-[#1F211F] ${fontClass}`}>
+    <div className="min-h-screen transition-colors duration-500 flex flex-col bg-[#FAF8F2] text-[#1F211F] selection:bg-[#8D5A44]/20 selection:text-[#1F211F]">
       {/* Sticky Top Navbar */}
       <Navbar
         activeTab={activeTab}
@@ -277,8 +268,6 @@ export default function App() {
         onOpenAddComponent={() => {
           setActiveTab('inventory');
         }}
-        headingFont={headingFont}
-        setHeadingFont={setHeadingFont}
       />
 
       {/* Main Content Area */}
