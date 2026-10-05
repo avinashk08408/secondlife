@@ -246,7 +246,7 @@ export const INITIAL_PROJECTS: Project[] = [
     category: 'Green Tech',
     difficulty: 'Intermediate',
     estimatedBuildTimeMinutes: 75,
-    image: '/src/assets/images/project_plant_watering_1791212782796.jpg',
+    image: `${import.meta.env.BASE_URL}images/smart-plant-auto-watering.jpg`,
     environmentalImpact: {
       divertedGrams: 112,
       preventedCo2Kg: 1.57,
