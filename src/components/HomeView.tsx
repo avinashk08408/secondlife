@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   ComponentItem,
   ProjectFeasibilityResult,
@@ -38,6 +38,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
   onNavigate,
   onSelectProject,
 }) => {
+  const [featuredProjectIndex, setFeaturedProjectIndex] = useState(0);
   const totalComponentsCount = inventory.reduce((acc, item) => acc + item.quantity, 0);
   const totalWeightGrams = inventory.reduce(
     (acc, item) => acc + item.estimatedWeightGrams * item.quantity,
@@ -45,6 +46,23 @@ export const HomeView: React.FC<HomeViewProps> = ({
   );
   const totalCo2Kg = ((totalWeightGrams / 1000) * 14).toFixed(2);
   const fullyReadyCount = feasibilityResults.filter((f) => f.feasibilityPercent === 100).length;
+  const featuredResult = feasibilityResults[featuredProjectIndex] ?? feasibilityResults[0];
+
+  useEffect(() => {
+    if (feasibilityResults.length <= 1) return;
+
+    const rotationTimer = window.setInterval(() => {
+      setFeaturedProjectIndex((currentIndex) => (currentIndex + 1) % feasibilityResults.length);
+    }, 6000);
+
+    return () => window.clearInterval(rotationTimer);
+  }, [feasibilityResults.length]);
+
+  useEffect(() => {
+    if (featuredProjectIndex >= feasibilityResults.length) {
+      setFeaturedProjectIndex(0);
+    }
+  }, [featuredProjectIndex, feasibilityResults.length]);
 
   return (
     <div className="space-y-16 pb-20 animate-in fade-in duration-300">
@@ -128,8 +146,8 @@ export const HomeView: React.FC<HomeViewProps> = ({
               {/* Card Image Banner */}
               <div className="aspect-[16/11] w-full relative bg-[#F2EDE2]">
                 <img
-                  src={HERO_IMAGE}
-                  alt="Maker electronics workbench with salvaged circuits and microcontroller"
+                  src={featuredResult?.project.image ?? HERO_IMAGE}
+                  alt={featuredResult?.project.title ?? 'Maker electronics workbench with salvaged circuits and microcontroller'}
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
                 />
@@ -149,13 +167,17 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 {/* Floating Project Preview Inside Image */}
                 <div className="absolute bottom-3 left-4 right-4 p-3 bg-[#FAF8F2]/95 backdrop-blur-md rounded-xl border border-[#E2DDD4] shadow-md">
                   <div className="flex items-center justify-between text-xs mb-1">
-                    <span className="font-semibold text-[#1F211F]">Ultrasonic Distance Radar</span>
+                    <span className="font-semibold text-[#1F211F]">
+                      {featuredResult?.project.title ?? 'Ultrasonic Distance Radar'}
+                    </span>
                     <span className="font-mono font-bold text-[#2E5E4E] bg-[#2E5E4E]/10 px-2 py-0.5 rounded border border-[#2E5E4E]/25">
-                      100% Ready to Build
+                      {featuredResult?.feasibilityPercent ?? 100}% Ready to Build
                     </span>
                   </div>
                   <p className="text-[11px] text-[#535550]">
-                    5 of 5 required components in active stock • Arduino Uno + HC-SR04 + Servo
+                    {featuredResult
+                      ? `${featuredResult.satisfiedCount} of ${featuredResult.totalRequired} required components in active stock • ${featuredResult.project.subtitle}`
+                      : '5 of 5 required components in active stock • Arduino Uno + HC-SR04 + Servo'}
                   </p>
                 </div>
               </div>
