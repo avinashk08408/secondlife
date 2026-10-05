@@ -158,7 +158,7 @@ export const INITIAL_PROJECTS: Project[] = [
     category: 'Robotics',
     difficulty: 'Beginner',
     estimatedBuildTimeMinutes: 45,
-    image: '/src/assets/images/project_ultrasonic_radar_1791212765812.jpg',
+    image: `${import.meta.env.BASE_URL}images/ultrasonic-distance-radar.jpg`,
     environmentalImpact: {
       divertedGrams: 54,
       preventedCo2Kg: 0.76,
