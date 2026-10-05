@@ -1,0 +1,528 @@
+import { ComponentItem, Project } from '../types';
+
+export const HERO_IMAGE = '/src/assets/images/hero_ewaste_workbench_1791212723498.jpg';
+
+export const INITIAL_INVENTORY: ComponentItem[] = [
+  {
+    id: 'comp-1',
+    name: 'Arduino Uno R3',
+    category: 'Microcontroller',
+    quantity: 2,
+    condition: 'Working',
+    estimatedWeightGrams: 25,
+    notes: 'Salvaged from university robotics kit; ATmega328P intact',
+    dateAdded: '2026-03-28',
+  },
+  {
+    id: 'comp-2',
+    name: 'HC-SR04 Ultrasonic Sensor',
+    category: 'Sensor',
+    quantity: 1,
+    condition: 'Working',
+    estimatedWeightGrams: 10,
+    notes: 'Dual transducer module; 5V operating voltage',
+    dateAdded: '2026-03-29',
+  },
+  {
+    id: 'comp-3',
+    name: 'SG90 Micro Servo',
+    category: 'Actuator',
+    quantity: 2,
+    condition: 'Salvaged',
+    estimatedWeightGrams: 12,
+    notes: 'Recovered from broken RC model plane; 180° rotation',
+    dateAdded: '2026-04-01',
+  },
+  {
+    id: 'comp-4',
+    name: '16x2 LCD Display with I2C',
+    category: 'Display',
+    quantity: 1,
+    condition: 'Working',
+    estimatedWeightGrams: 35,
+    notes: 'PCF8574 I2C backpack onboard; requires only SDA/SCL pins',
+    dateAdded: '2026-04-02',
+  },
+  {
+    id: 'comp-5',
+    name: 'Green/Red LEDs (Pack of 10)',
+    category: 'Passive',
+    quantity: 10,
+    condition: 'New',
+    estimatedWeightGrams: 2,
+    notes: '5mm diffused LEDs; 20mA forward current',
+    dateAdded: '2026-04-03',
+  },
+  {
+    id: 'comp-6',
+    name: 'Active Buzzer',
+    category: 'Actuator',
+    quantity: 1,
+    condition: 'Salvaged',
+    estimatedWeightGrams: 5,
+    notes: '5V piezo sounder with internal oscillator',
+    dateAdded: '2026-04-04',
+  },
+];
+
+export const QUICK_ADD_PRESETS = [
+  {
+    name: 'Arduino Uno R3',
+    category: 'Microcontroller' as const,
+    quantity: 1,
+    condition: 'Working' as const,
+    estimatedWeightGrams: 25,
+    notes: 'General purpose 8-bit microcontroller board',
+  },
+  {
+    name: 'Soil Moisture Sensor Probe',
+    category: 'Sensor' as const,
+    quantity: 1,
+    condition: 'Working' as const,
+    estimatedWeightGrams: 14,
+    notes: 'Resistive dual-fork soil moisture detector',
+  },
+  {
+    name: '5V Single-Channel Relay Module',
+    category: 'Actuator' as const,
+    quantity: 1,
+    condition: 'Salvaged' as const,
+    estimatedWeightGrams: 16,
+    notes: 'Optocoupler isolated 10A 250VAC switching relay',
+  },
+  {
+    name: 'Mini Submersible 5V Water Pump',
+    category: 'Actuator' as const,
+    quantity: 1,
+    condition: 'Salvaged' as const,
+    estimatedWeightGrams: 32,
+    notes: 'Brushless DC water pump with 6mm silicone outlet',
+  },
+  {
+    name: '9V Alkaline Battery with Clip',
+    category: 'Power' as const,
+    quantity: 1,
+    condition: 'Working' as const,
+    estimatedWeightGrams: 46,
+    notes: 'Standard PP3 9-volt battery cell',
+  },
+  {
+    name: 'DHT11 Temp & Humidity Sensor',
+    category: 'Sensor' as const,
+    quantity: 1,
+    condition: 'Working' as const,
+    estimatedWeightGrams: 8,
+    notes: 'Digital single-bus atmospheric temperature/humidity probe',
+  },
+  {
+    name: 'DS3231 RTC Real-Time Clock',
+    category: 'Sensor' as const,
+    quantity: 1,
+    condition: 'Working' as const,
+    estimatedWeightGrams: 9,
+    notes: 'High precision I2C clock module with coin-cell backup',
+  },
+  {
+    name: 'PIR Motion Sensor (HC-SR501)',
+    category: 'Sensor' as const,
+    quantity: 1,
+    condition: 'Salvaged' as const,
+    estimatedWeightGrams: 15,
+    notes: 'Passive infrared human presence detector',
+  },
+  {
+    name: '5V LED Strip Segment (30cm)',
+    category: 'Display' as const,
+    quantity: 1,
+    condition: 'Salvaged' as const,
+    estimatedWeightGrams: 20,
+    notes: 'Salvaged flexible warm white 5V illumination strip',
+  },
+  {
+    name: '18650 Li-ion Cell with Holder',
+    category: 'Power' as const,
+    quantity: 1,
+    condition: 'Salvaged' as const,
+    estimatedWeightGrams: 48,
+    notes: '3.7V 2200mAh salvaged laptop battery cell with protection',
+  },
+];
+
+export const INITIAL_PROJECTS: Project[] = [
+  {
+    id: 'proj-ultrasonic-radar',
+    title: 'Ultrasonic Distance Radar & Obstacle Detector',
+    subtitle: 'Automated 180° sweeping sonar radar with audible proximity warning',
+    description:
+      'Repurpose an ultrasonic range sensor and small servo motor into an interactive sweeping radar station. As the servo sweeps, it detects obstacles up to 2 meters away and triggers tiered audible warning beeps and LED indicators.',
+    category: 'Robotics',
+    difficulty: 'Beginner',
+    estimatedBuildTimeMinutes: 45,
+    image: '/src/assets/images/project_ultrasonic_radar_1791212765812.jpg',
+    environmentalImpact: {
+      divertedGrams: 54,
+      preventedCo2Kg: 0.76,
+    },
+    toolsNeeded: ['Breadboard', 'Jumper Wires (M-to-M, M-to-F)', 'USB-B Cable', 'Double-sided Tape'],
+    requiredComponents: [
+      {
+        name: 'Arduino Uno',
+        category: 'Microcontroller',
+        requiredQuantity: 1,
+        aliases: ['arduino uno', 'uno r3', 'atmega328'],
+        salvageTip: 'Old maker prototypes, school starter kits, or 3D printer controller spares',
+        buyEstimatedCost: '$4.50',
+      },
+      {
+        name: 'HC-SR04 Ultrasonic Sensor',
+        category: 'Sensor',
+        requiredQuantity: 1,
+        aliases: ['hc-sr04', 'ultrasonic', 'distance sensor'],
+        salvageTip: 'Salvage from discarded robot vacuum bumper or toy drone altimeter',
+        buyEstimatedCost: '$1.80',
+      },
+      {
+        name: 'SG90 Micro Servo',
+        category: 'Actuator',
+        requiredQuantity: 1,
+        aliases: ['sg90', 'servo', 'micro servo', 'actuator'],
+        salvageTip: 'Salvaged from broken RC cars, toy airplane steering, or camera gimbals',
+        buyEstimatedCost: '$2.00',
+      },
+      {
+        name: 'Active Buzzer',
+        category: 'Actuator',
+        requiredQuantity: 1,
+        aliases: ['buzzer', 'piezo', 'sounder', 'audio buzzer'],
+        salvageTip: 'Desolder from broken PC motherboards, old microwave panels, or alarm clocks',
+        buyEstimatedCost: '$0.50',
+      },
+      {
+        name: 'Green/Red LEDs',
+        category: 'Passive',
+        requiredQuantity: 2,
+        aliases: ['led', 'leds', 'indicator led', 'green/red leds'],
+        salvageTip: 'Harvest from broken router front panels, DVD players, or dead chargers',
+        buyEstimatedCost: '$0.20',
+      },
+    ],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Servo & Ultrasonic Mechanical Mount',
+        description:
+          'Mount the HC-SR04 ultrasonic sensor onto the SG90 servo horn using double-sided foam tape or cable ties. Ensure the sensor eyes point forward at 90° center position.',
+        pinWiringTip: 'Servo Orange -> Pin 9, Red -> 5V, Brown -> GND',
+      },
+      {
+        stepNumber: 2,
+        title: 'Ultrasonic Sensor & Audio Wiring',
+        description:
+          'Connect HC-SR04 Trig and Echo pins to the Arduino digital I/O header. Wire the active buzzer with a 220Ω protective resistor in series to digital pin 8.',
+        pinWiringTip: 'HC-SR04 Trig -> Pin 11, Echo -> Pin 12, Buzzer(+) -> Pin 8',
+      },
+      {
+        stepNumber: 3,
+        title: 'Status LED Indicators',
+        description:
+          'Plug Green LED to Pin 7 (Clear Path indicator) and Red LED to Pin 6 (Obstacle Warning indicator) with 330Ω current-limiting resistors connected to ground.',
+        pinWiringTip: 'Green LED Anode -> Pin 7, Red LED Anode -> Pin 6, Cathodes -> GND',
+      },
+      {
+        stepNumber: 4,
+        title: 'Flash Radar Firmware & Calibration',
+        description:
+          'Upload the Arduino sweep loop. The servo increments 15° each tick, measures echo transit time, and fires rapid buzzer pulses when an obstacle is detected within 25cm.',
+        pinWiringTip: 'Baud rate: 9600 for Serial Plotter visualization',
+      },
+    ],
+  },
+  {
+    id: 'proj-smart-plant-watering',
+    title: 'Smart Plant Auto-Watering System',
+    subtitle: 'Automated soil moisture sensing with relay pump actuation',
+    description:
+      'Prevent household flora dehydration by automating hydration cycles. A soil probe reads electrolytic conductivity; when moisture drops below threshold, a 5V relay engages a miniature water pump for 4 seconds.',
+    category: 'Green Tech',
+    difficulty: 'Intermediate',
+    estimatedBuildTimeMinutes: 75,
+    image: '/src/assets/images/project_plant_watering_1791212782796.jpg',
+    environmentalImpact: {
+      divertedGrams: 112,
+      preventedCo2Kg: 1.57,
+    },
+    toolsNeeded: ['Silicone tubing (6mm)', 'Water container / recycled bottle', 'Wire stripper', 'Screwdriver'],
+    requiredComponents: [
+      {
+        name: 'Arduino Uno',
+        category: 'Microcontroller',
+        requiredQuantity: 1,
+        aliases: ['arduino uno', 'uno r3', 'atmega328'],
+        salvageTip: 'Reclaim from discarded electronics lab kits or prototyping stock',
+        buyEstimatedCost: '$4.50',
+      },
+      {
+        name: 'Soil Moisture Sensor Probe',
+        category: 'Sensor',
+        requiredQuantity: 1,
+        aliases: ['soil moisture', 'soil probe', 'hygrometer', 'moisture sensor'],
+        salvageTip: 'Craft a DIY probe with 2 salvaged copper nails soldered to analog input leads',
+        buyEstimatedCost: '$1.50',
+      },
+      {
+        name: '5V Single-Channel Relay Module',
+        category: 'Actuator',
+        requiredQuantity: 1,
+        aliases: ['relay', '5v relay', 'relay module'],
+        salvageTip: 'Desolder power relay from discarded coffee maker, microwave, or UPS board',
+        buyEstimatedCost: '$1.20',
+      },
+      {
+        name: 'Mini Submersible 5V Water Pump',
+        category: 'Actuator',
+        requiredQuantity: 1,
+        aliases: ['water pump', 'submersible pump', 'mini pump', 'dc pump'],
+        salvageTip: 'Salvage from broken tabletop water fountain or car windshield washer reservoir',
+        buyEstimatedCost: '$2.80',
+      },
+      {
+        name: '9V Alkaline Battery with Clip',
+        category: 'Power',
+        requiredQuantity: 1,
+        aliases: ['9v battery', 'power source', 'battery clip', '9v'],
+        salvageTip: 'Reclaim from retired smoke detectors or use a salvaged 5V phone charger USB cable',
+        buyEstimatedCost: '$1.60',
+      },
+    ],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Calibrate Soil Probe in Dry vs Wet Soil',
+        description:
+          'Place probe into dry soil and note the analog ADC value (~850). Submerge in moistened earth and record wet value (~380). Define threshold around 600.',
+        pinWiringTip: 'Soil Sensor VCC -> 5V, GND -> GND, Analog Out -> Pin A0',
+      },
+      {
+        stepNumber: 2,
+        title: 'Wire the Relay Driver Circuit',
+        description:
+          'Connect relay control pin IN to Arduino digital pin 4. The relay isolates the pump DC current from the sensitive microcontroller logic.',
+        pinWiringTip: 'Relay VCC -> 5V, GND -> GND, IN -> Pin 4',
+      },
+      {
+        stepNumber: 3,
+        title: 'Plumb the Water Reservoir & Pump',
+        description:
+          'Submerge the mini pump inside a repurposed glass jar or recycled soda bottle. Connect silicone tube to pump output and secure emitter near plant base.',
+        pinWiringTip: 'Pump(+) -> Relay Common/NO contact, Pump(-) -> Battery(-)',
+      },
+      {
+        stepNumber: 4,
+        title: 'Logic Safeguards & Anti-Flood Timeout',
+        description:
+          'Implement a minimum 2-hour sleep cooldown between pumping cycles to allow water to permeate the substrate without flooding roots.',
+        pinWiringTip: 'Max pump burst duration: 4500ms',
+      },
+    ],
+  },
+  {
+    id: 'proj-smart-desk-clock',
+    title: 'Smart Desk Clock & Climate Monitor',
+    subtitle: 'Backlit LCD digital chronometer with live ambient temperature and humidity',
+    description:
+      'Upcycle an alphanumeric LCD panel into a desktop environmental clock. Displays hours, minutes, and ambient microclimate conditions with real-time temperature tracking.',
+    category: 'Instruments & Clocks',
+    difficulty: 'Intermediate',
+    estimatedBuildTimeMinutes: 60,
+    image: '/src/assets/images/project_desk_clock_1791212797342.jpg',
+    environmentalImpact: {
+      divertedGrams: 77,
+      preventedCo2Kg: 1.08,
+    },
+    toolsNeeded: ['Breadboard', '4x Male-Female Jumper Wires', 'USB cable'],
+    requiredComponents: [
+      {
+        name: 'Arduino Uno',
+        category: 'Microcontroller',
+        requiredQuantity: 1,
+        aliases: ['arduino uno', 'uno r3', 'atmega328'],
+        salvageTip: 'Repurpose existing Arduino Uno from your inventory',
+        buyEstimatedCost: '$4.50',
+      },
+      {
+        name: '16x2 LCD Display with I2C',
+        category: 'Display',
+        requiredQuantity: 1,
+        aliases: ['16x2', 'lcd', 'i2c display', '16x2 lcd'],
+        salvageTip: 'Recovered from obsolete fax machines, copier panels, or 3D printers',
+        buyEstimatedCost: '$3.20',
+      },
+      {
+        name: 'DHT11 Temp & Humidity Sensor',
+        category: 'Sensor',
+        requiredQuantity: 1,
+        aliases: ['dht11', 'dht22', 'temp sensor', 'humidity sensor', 'temperature'],
+        salvageTip: 'Salvage from old dehumidifier or smart thermostat backplate',
+        buyEstimatedCost: '$1.40',
+      },
+      {
+        name: 'DS3231 RTC Real-Time Clock',
+        category: 'Sensor',
+        requiredQuantity: 1,
+        aliases: ['rtc', 'ds3231', 'ds1307', 'real-time clock', 'clock module'],
+        salvageTip: 'Or use software Arduino millis() clock if hardware RTC is unavailable!',
+        buyEstimatedCost: '$2.10',
+      },
+    ],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'I2C Bus Wiring for LCD & RTC',
+        description:
+          'Connect both the 16x2 LCD and the DS3231 module in parallel to the Arduino I2C SDA (A4) and SCL (A5) bus pins.',
+        pinWiringTip: 'I2C Bus: SDA -> A4, SCL -> A5, VCC -> 5V, GND -> GND',
+      },
+      {
+        stepNumber: 2,
+        title: 'DHT11 Climate Sensor Connection',
+        description:
+          'Wire the DHT11 digital data pin to Arduino Pin 2 with a 10kΩ pull-up resistor to 5V rail for stable signal transmission.',
+        pinWiringTip: 'DHT11 Data -> Pin 2, VCC -> 5V, GND -> GND',
+      },
+      {
+        stepNumber: 3,
+        title: 'Display Formatting & Screen Pagination',
+        description:
+          'Configure LiquidCrystal_I2C library. Row 1 formats `TIME: 14:32:05`, Row 2 scrolls `TEMP: 24.2C | RH: 58%`.',
+        pinWiringTip: 'Default I2C address: 0x27 or 0x3F',
+      },
+    ],
+  },
+  {
+    id: 'proj-salvaged-night-light',
+    title: 'Salvaged Night Light with Motion Sensor',
+    subtitle: 'Autonomous motion-triggered gentle ambient nightlight with lithium power',
+    description:
+      'Harness discarded lithium battery cells and LED segments to craft an eco-friendly night lamp. Automatically illuminates when human movement is sensed in dark corridors.',
+    category: 'Lighting',
+    difficulty: 'Beginner',
+    estimatedBuildTimeMinutes: 35,
+    image: '/src/assets/images/project_night_light_1791212814309.jpg',
+    environmentalImpact: {
+      divertedGrams: 83,
+      preventedCo2Kg: 1.16,
+    },
+    toolsNeeded: ['Soldering iron or wire nuts', 'Heatshrink tubing', 'Enclosure or glass jar'],
+    requiredComponents: [
+      {
+        name: 'PIR Motion Sensor (HC-SR501)',
+        category: 'Sensor',
+        requiredQuantity: 1,
+        aliases: ['pir', 'motion sensor', 'hc-sr501', 'human sensor'],
+        salvageTip: 'Salvage from broken outdoor floodlights or alarm system sirens',
+        buyEstimatedCost: '$1.50',
+      },
+      {
+        name: '5V LED Strip Segment (30cm)',
+        category: 'Display',
+        requiredQuantity: 1,
+        aliases: ['led strip', '5v led', 'light strip', 'illumination strip'],
+        salvageTip: 'Harvest from dead LCD monitor edge backlights or festive LED strips',
+        buyEstimatedCost: '$1.80',
+      },
+      {
+        name: '18650 Li-ion Cell with Holder',
+        category: 'Power',
+        requiredQuantity: 1,
+        aliases: ['18650', 'li-ion', 'battery cell', 'rechargeable battery'],
+        salvageTip: 'Salvage good health 18650 cells from discarded laptop battery packs',
+        buyEstimatedCost: '$3.50',
+      },
+    ],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'PIR Sensitivity & Delay Potentiometers',
+        description:
+          'Adjust the onboard PIR trimpot for 3-meter detection zone and 20-second active hold duration.',
+        pinWiringTip: 'PIR Output switches HIGH (3.3V) on motion detection',
+      },
+      {
+        stepNumber: 2,
+        title: 'Direct Transistor or Relay Switching',
+        description:
+          'Use a general-purpose 2N2222 or MOSFET transistor to switch the 5V LED strip using the PIR logic trigger.',
+        pinWiringTip: 'Base to PIR Out, Collector to LED(-), Emitter to GND',
+      },
+      {
+        stepNumber: 3,
+        title: 'Assemble Diffuser Enclosure',
+        description:
+          'Mount components inside a frosted plastic casing or sanded mason jar to create a diffused, glare-free night light.',
+        pinWiringTip: 'Add 1A inline fuse for battery protection',
+      },
+    ],
+  },
+  {
+    id: 'proj-solar-charger',
+    title: 'Solar Battery USB Emergency Charger',
+    subtitle: 'Off-grid harvested solar harvester with lithium storage & status indicators',
+    description:
+      'Turn broken garden lamps and harvested 18650 cells into a rugged emergency solar pack with LED charge state monitoring and 5V USB output.',
+    category: 'Green Tech',
+    difficulty: 'Intermediate',
+    estimatedBuildTimeMinutes: 50,
+    image: '/src/assets/images/hero_ewaste_workbench_1791212723498.jpg',
+    environmentalImpact: {
+      divertedGrams: 95,
+      preventedCo2Kg: 1.33,
+    },
+    toolsNeeded: ['Soldering iron', 'Multimeter', 'Hot glue gun', 'Enclosure'],
+    requiredComponents: [
+      {
+        name: '5V Solar Cell Panel',
+        category: 'Power',
+        requiredQuantity: 1,
+        aliases: ['solar panel', 'solar cell', 'pv panel', '5v solar'],
+        salvageTip: 'Salvage from broken garden pathway solar lamps or solar toys',
+        buyEstimatedCost: '$2.50',
+      },
+      {
+        name: '18650 Li-ion Cell with Holder',
+        category: 'Power',
+        requiredQuantity: 1,
+        aliases: ['18650', 'li-ion', 'battery cell', 'rechargeable battery'],
+        salvageTip: 'Extract undamaged cells from recycled power banks or laptops',
+        buyEstimatedCost: '$3.50',
+      },
+      {
+        name: 'Green/Red LEDs',
+        category: 'Passive',
+        requiredQuantity: 1,
+        aliases: ['led', 'leds', 'indicator led', 'green/red leds'],
+        salvageTip: 'Salvage from obsolete electronics boards',
+        buyEstimatedCost: '$0.20',
+      },
+    ],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Solar Panel Output Verification',
+        description: 'Check open circuit voltage under direct sunlight (aim for 5.5V–6.0V DC).',
+        pinWiringTip: 'Solar (+) to TP4056 IN+, Solar (-) to IN-',
+      },
+      {
+        stepNumber: 2,
+        title: 'Battery Cell Protection',
+        description: 'Connect 18650 cell terminals to the battery management contacts.',
+        pinWiringTip: 'Battery (+) to B+, Battery (-) to B-',
+      },
+      {
+        stepNumber: 3,
+        title: 'LED Charging Feedback',
+        description: 'Hook up Red LED for charging state and Green LED for full capacity indication.',
+        pinWiringTip: 'Resistor: 470Ω in series',
+      },
+    ],
+  },
+];

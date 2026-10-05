@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+:root {
+  --paper: #FAF8F2;
+  --ink: #1F211F;
+  --sienna: #8D5A44;
+  --border: rgba(31, 33, 31, 0.14);
+  --muted: #535550;
+}
+
+@layer base {
+  body {
+    background-color: #FAF8F2;
+    color: #1F211F;
+    font-family: 'Manrope', 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+  
+  h1, h2, h3, h4, .font-display {
+    font-family: 'Lobster Two', 'Little Days', 'DaunPenh', 'Libre Baskerville', Georgia, cursive, serif;
+    letter-spacing: -0.01em;
+  }
+
+  .font-heading-hero {
+    font-family: 'Lobster Two', 'Little Days', 'DaunPenh', 'Libre Baskerville', Georgia, cursive, serif;
+    letter-spacing: -0.015em;
+  }
+
+  code, kbd, samp, pre, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+.font-lobster {
+  font-family: 'Lobster Two', cursive, serif !important;
+}
+
+.font-littledays {
+  font-family: 'Little Days', cursive, sans-serif !important;
+}
+
+.font-daunpenh {
+  font-family: 'DaunPenh', 'Libre Baskerville', Georgia, serif !important;
+}
+
+/* Custom scrollbars with avinashk warm paper parchment styling */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF8F2;
+}
+::-webkit-scrollbar-thumb {
+  background: #D8D2C5;
+  border-radius: 9999px;
+  border: 2px solid #FAF8F2;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8D5A44;
+}

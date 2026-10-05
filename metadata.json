@@ -1,0 +1,6 @@
+{
+  "name": "SECONDLIFE – Smart E-Waste Repurposing Platform",
+  "description": "Inventory unused electronic components, match with DIY reuse projects, compute real-time feasibility, and track environmental e-waste reduction.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
