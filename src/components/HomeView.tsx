@@ -71,9 +71,9 @@ export const HomeView: React.FC<HomeViewProps> = ({
             </div>
 
             {/* Main Headline with Stylized Heading Font */}
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-normal font-display text-[#1F211F] tracking-tight leading-[1.18] text-balance">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-normal font-body text-[#1F211F] tracking-tight leading-[1.18] text-balance">
               We Accelerate Hardware Upcycling{' '}
-              <span className="text-[#8D5A44] relative inline-block underline decoration-[#8D5A44]/30 decoration-wavy underline-offset-8">
+              <span className="text-[#8D5A44]">
                 from Concept to Working Device
               </span>
               .
@@ -232,7 +232,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
           <p className="text-xs font-semibold text-[#8D5A44] uppercase tracking-wider font-mono">
             Domains of Expertise & Blueprints
           </p>
-          <h2 className="text-xl sm:text-2xl font-normal font-display text-[#1F211F] mt-1">
+          <h2 className="text-xl sm:text-2xl font-normal font-body text-[#1F211F] mt-1">
             Engineered Hardware Upcycling Verticals
           </h2>
           <p className="text-xs sm:text-sm text-[#535550] mt-1">
@@ -291,7 +291,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
           <p className="text-xs font-semibold text-[#8D5A44] uppercase tracking-wider font-mono">
             Product Development Lifecycle
           </p>
-          <h2 className="text-xl sm:text-2xl font-normal font-display text-[#1F211F] mt-1">
+          <h2 className="text-xl sm:text-2xl font-normal font-body text-[#1F211F] mt-1">
             Systematic Stages from E-Waste Scrap to Working Device
           </h2>
           <p className="text-xs sm:text-sm text-[#535550] mt-1">
@@ -363,7 +363,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             <p className="text-xs font-semibold text-[#8D5A44] uppercase tracking-wider font-mono">
               Production-Ready Schematics
             </p>
-            <h2 className="text-xl sm:text-2xl font-normal font-display text-[#1F211F] mt-1">
+            <h2 className="text-xl sm:text-2xl font-normal font-body text-[#1F211F] mt-1">
               Featured Upcycling Blueprints
             </h2>
             <p className="text-xs sm:text-sm text-[#535550] mt-1">

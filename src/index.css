@@ -42,6 +42,11 @@
   font-family: 'DaunPenh', 'Libre Baskerville', Georgia, serif !important;
 }
 
+/* Use the normal body typeface for content headings that should not use the display font. */
+.font-body {
+  font-family: inherit !important;
+}
+
 /* Custom scrollbars with avinashk warm paper parchment styling */
 ::-webkit-scrollbar {
   width: 7px;
